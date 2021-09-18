@@ -1,0 +1,1 @@
+cd ~;ls;clear;history;gedit &;gedit &;xdg-open OS.pdf &;xdg-open OS.pdf;clear;gedit shell.c &;gedit shell.c &;gedit shell.c;ls;gedit shell.c &;clear;gedit shell.c;cd .;history;cd .;history;
