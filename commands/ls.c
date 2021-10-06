@@ -319,6 +319,8 @@ void ls(char commandparams[MAX_ARG_NUM][MAX_ARG_SIZE],int argnum)
     //now that we have checked the flags
     for(int i=1;i<argnum;i++)
     {
+        if(commandparams[i][0]=='~')
+            commandparams[i][0]='.';
         if(commandparams[i][0]!='-')
         {
             struct stat s;
@@ -329,8 +331,10 @@ void ls(char commandparams[MAX_ARG_NUM][MAX_ARG_SIZE],int argnum)
             }
             else
             {
+            
             if(argflag>1)
                 printf("%s:\n",commandparams[i]);
+  
             if(aflag && lflag)
             lsla(commandparams[i]);
             else if(aflag && !lflag)

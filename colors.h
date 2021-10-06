@@ -1,4 +1,5 @@
 #ifndef COLORS__H
+#define COLORS__H
 # define RESET  "\x1b[0m"
 # define BRIGHT  "\x1b[1m"
 # define DIM  "\x1b[2m"

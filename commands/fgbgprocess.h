@@ -1,4 +1,5 @@
 #ifndef FGBGPROCESS__H
+#define FGBGPROCESS__H
 #include "../utils.h"
 void executefgprocess(char commandparams[MAX_ARG_NUM][MAX_ARG_SIZE],int argnum);
 void executebgprocess(char commandparams[MAX_ARG_NUM][MAX_ARG_SIZE],int argnum);
@@ -10,10 +11,13 @@ struct processinfo
 {
     int pid;
     char nameofprocess[256];
+    int jobno;
     processinfo* next;
 };//this stores the info about the process, mainly it's name and the process id, to be used when dealing with SIGCHLD signals
 extern processlist PList;
-
+extern int curfgpid;//stores the pid of the currently active foreground process
+extern char curfgpname[MAX_ARG_SIZE];//stores the name of the currently active foreground process
+extern int activejobs[129];//stores a list of the active jobs
 ptrtoprocessinfo makenode (int mypid, char myname[256]); //makes a node with pid as mypid and nameofprocess as myname
 processlist createemptylist();//creates an empty list
 
@@ -23,3 +27,4 @@ void searchforprocessname(processlist L, int mypid, char dest[256] );// searches
 
 
 #endif // !FGBGPROCESS__H
+

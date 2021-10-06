@@ -1,4 +1,5 @@
 #ifndef HISTORY__H
+#define HISTORY__H
 #include "../utils.h"
 extern char historyinfo[20][MAX_ARG_SIZE];// makes a 2d array to store previous commands
 extern int numcommandsstored;

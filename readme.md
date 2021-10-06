@@ -35,7 +35,6 @@ the directory structure is as follows
 1 directory, 26 files
 ```
 
-Note: the folder `history.txt` is a hidden folder, which is only used to show the workings of the `ls` function 
 
 ## Usage
 
@@ -61,7 +60,7 @@ fgbgprocess.c - for execution of foreground and background processes
 fgbgprocess.h - header file for the foreground and background processes
 history.c - for the history function
 history.h - header file for the history function
-shell.c/shell.h - main function corresponding to the actual shell, contains code for displaying
+shellwithuparrow.c/shell.h - main function corresponding to the actual shell, contains code for displaying
 					prompt, and taking input and performing approprate action
 colors.h - header file which contains codes for colors as well as BRIGHT, DIM 
 utils.c/utils.h- contains utility functions

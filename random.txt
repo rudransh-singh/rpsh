@@ -28,9 +28,6 @@ int max(int a,int b)
 }
 char home[200];
 processlist PList;
-int curfgpid=0;
-char curfgpname[MAX_ARG_SIZE];
-int activejobs[129];
 void handle_child_death(int sig)
 {
     int stat;
@@ -228,48 +225,28 @@ void takeinput(char inp[])
 }
 void handle_ctrlc(int sig)
 {
-    if(curfgpid==-1)
-    {
-        return;
-    }
-    kill(curfgpid,SIGINT);
-    printf("\n");
-    // display(home);
-    curfgpid=-1;
-    strcpy(curfgpname,"");
+    printf("pressed ctrl c\n");
     return;
 }
 
 void handle_ctrlz(int sig)
 {
-   if(curfgpid == -1)
-   {
-       return; 
-   }
-   kill(curfgpid,SIGTSTP);
-   insertprocess(PList,curfgpid,curfgpname);
-   printf("\n");
-   curfgpid=-1;
-   strcpy(curfgpname,"");
-   return;
+    printf("pressed ctrl z");
+    return;
 }
 int main() {
-    for(int i=0;i<129;i++)
-        activejobs[i]=0;
-    getcwd(home,200);
     signal(SIGINT,handle_ctrlc);
     signal(SIGTSTP,handle_ctrlz);
     numcommandsstored= openhistoryfile(historyinfo); // function to open history.txt and store it's contents in history array
     //num commands stored contains the number of commands currently stored in history
     PList=createemptylist();
-
+    getcwd(home,200);
     signal(SIGCHLD,handle_child_death);
  while(1)
     {
         char input_line[256]; // stores the input line (which is taken through readline function)
         char** commandparams; //will store the command info (command name and params) after parsing
-        curfgpid=-1;
-        strcpy(curfgpname,"");
+
 
 
         display(home); //displays the prompt
@@ -284,3 +261,4 @@ int main() {
 
     return 0;
 }
+

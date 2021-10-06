@@ -1,4 +1,5 @@
 #ifndef LS__H
+#define LS__H
 #include "../utils.h"
 void lsla(char *filepath); //ls with -l and -a flags
 void lsxa(char *filepath); //ls with only -a flag

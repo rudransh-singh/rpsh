@@ -55,7 +55,7 @@ void deleteprocess(processlist L, int mypid)
 void searchforprocessname(processlist L, int mypid, char dest[256] )
 {
     ptrtoprocessinfo p=L->next;
-    for(;p;p->next)
+    for(;p;p=p->next)
     {
         if(p->pid==mypid)
         {
@@ -107,8 +107,8 @@ void executefgprocess(char commandparams[MAX_ARG_NUM][MAX_ARG_SIZE], int argnum)
     {
         args[i]=commandparams[i];
     }
-    int pid=fork();
     args[argnum]=NULL;
+    int pid=fork();
     if(pid < 0)//if forking was unsuccessful
     {
         perror(commandparams[0]);
@@ -126,11 +126,14 @@ void executefgprocess(char commandparams[MAX_ARG_NUM][MAX_ARG_SIZE], int argnum)
     else 
     {
         signal(SIGTTOU, SIG_IGN);
-        tcsetpgrp(0,pid);
+        // tcsetpgrp(0,pid);
         int status=0;
+        curfgpid=pid;
+        strcpy(curfgpname,commandparams[0]);
         waitpid(pid,&status,WUNTRACED);
-        tcsetpgrp(0,getpgrp());
+        // tcsetpgrp(0,getpgrp());
         signal(SIGTTOU, SIG_DFL);
+        // printf("\n");
     }
 
 }
